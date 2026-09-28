@@ -1,0 +1,44 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="max-w-4xl mx-auto space-y-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h1 class="text-2xl font-black text-slate-900">Modifier le Service</h1>
+            <p class="text-xs font-semibold text-slate-500 mt-1">Mise à jour de la prestation.</p>
+        </div>
+        <a href="{{ route('services.index') }}" class="inline-flex items-center space-x-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold px-4 py-3 rounded-2xl transition">
+            <i class="fas fa-arrow-left"></i>
+            <span>Retour</span>
+        </a>
+    </div>
+
+    <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
+        <form action="{{ route('services.update', $service) }}" method="POST" class="space-y-5">
+            @csrf
+            @method('PUT')
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                <div class="sm:col-span-2">
+                    <label class="block text-xs font-extrabold text-slate-700 uppercase mb-2">Intitulé du service *</label>
+                    <input type="text" name="name" value="{{ old('name', $service->name) }}" required class="w-full text-xs font-bold rounded-2xl border-slate-200 focus:border-amber-500 focus:ring-amber-500/20 p-3.5 bg-slate-50/50">
+                </div>
+                <div>
+                    <label class="block text-xs font-extrabold text-slate-700 uppercase mb-2">Prix unitaire (FCFA) *</label>
+                    <input type="number" step="0.01" name="price" value="{{ old('price', $service->price) }}" required class="w-full text-xs font-bold rounded-2xl border-slate-200 focus:border-amber-500 focus:ring-amber-500/20 p-3.5 bg-slate-50/50">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs font-extrabold text-slate-700 uppercase mb-2">Description</label>
+                <textarea name="description" rows="3" class="w-full text-xs font-bold rounded-2xl border-slate-200 focus:border-amber-500 focus:ring-amber-500/20 p-3.5 bg-slate-50/50">{{ old('description', $service->description) }}</textarea>
+            </div>
+
+            <div class="pt-4 flex justify-end">
+                <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold px-6 py-3.5 rounded-2xl shadow-lg shadow-amber-500/20 transition-all">
+                    Mettre à jour
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection

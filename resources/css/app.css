@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --elvirex-gold: #d4af37;
+    --elvirex-gold-dark: #a98216;
+    --elvirex-gold-light: #fff7d6;
+    --elvirex-red: #b42318;
+    --elvirex-red-light: #fff0ee;
+    --elvirex-ink: #26221a;
+    --elvirex-muted: #716b5f;
+}
+
+html {
+    font-size: 16px;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+body {
+    color: var(--elvirex-ink);
+}
+
+/* Keep status and action accents within the Elvirex brand palette. */
+[class*='text-emerald-'],
+[class*='text-green-'],
+[class*='text-indigo-'],
+[class*='text-blue-'],
+[class*='text-cyan-'],
+[class*='text-teal-'],
+[class*='text-amber-'],
+[class*='text-yellow-'] {
+    color: var(--elvirex-gold-dark) !important;
+}
+
+[class*='text-rose-'],
+[class*='text-red-'] {
+    color: var(--elvirex-red) !important;
+}
+
+[class*='bg-emerald-50'],
+[class*='bg-green-50'],
+[class*='bg-indigo-50'],
+[class*='bg-blue-50'],
+[class*='bg-cyan-50'],
+[class*='bg-teal-50'],
+[class*='bg-amber-50'],
+[class*='bg-yellow-50'],
+[class*='bg-emerald-100'],
+[class*='bg-green-100'],
+[class*='bg-indigo-100'],
+[class*='bg-blue-100'],
+[class*='bg-cyan-100'],
+[class*='bg-teal-100'],
+[class*='bg-amber-100'],
+[class*='bg-yellow-100'] {
+    background-color: var(--elvirex-gold-light) !important;
+}
+
+[class*='bg-rose-50'],
+[class*='bg-red-50'],
+[class*='bg-rose-100'],
+[class*='bg-red-100'] {
+    background-color: var(--elvirex-red-light) !important;
+}
+
+[class*='border-emerald-'],
+[class*='border-green-'],
+[class*='border-indigo-'],
+[class*='border-blue-'],
+[class*='border-cyan-'],
+[class*='border-teal-'],
+[class*='border-amber-'],
+[class*='border-yellow-'] {
+    border-color: var(--elvirex-gold) !important;
+}
+
+[class*='border-rose-'],
+[class*='border-red-'] {
+    border-color: var(--elvirex-red) !important;
+}
+
+[class*='hover:text-emerald-']:hover,
+[class*='hover:text-green-']:hover,
+[class*='hover:text-indigo-']:hover,
+[class*='hover:text-blue-']:hover,
+[class*='hover:text-amber-']:hover,
+[class*='hover:text-yellow-']:hover,
+[class*='focus:border-emerald-']:focus,
+[class*='focus:border-green-']:focus,
+[class*='focus:border-indigo-']:focus,
+[class*='focus:border-blue-']:focus,
+[class*='focus:border-amber-']:focus,
+[class*='focus:border-yellow-']:focus {
+    color: var(--elvirex-gold-dark) !important;
+    border-color: var(--elvirex-gold) !important;
+}
+
+[class*='hover:text-rose-']:hover,
+[class*='hover:text-red-']:hover {
+    color: var(--elvirex-red) !important;
+}
+
+[class*='hover:bg-emerald-']:hover,
+[class*='hover:bg-green-']:hover,
+[class*='hover:bg-indigo-']:hover,
+[class*='hover:bg-blue-']:hover,
+[class*='hover:bg-amber-']:hover,
+[class*='hover:bg-yellow-']:hover {
+    background-color: var(--elvirex-gold-light) !important;
+}
+
+[class*='hover:bg-rose-']:hover,
+[class*='hover:bg-red-']:hover {
+    background-color: var(--elvirex-red-light) !important;
+}
+
+[class*='focus:ring-emerald-']:focus,
+[class*='focus:ring-green-']:focus,
+[class*='focus:ring-indigo-']:focus,
+[class*='focus:ring-blue-']:focus,
+[class*='focus:ring-amber-']:focus,
+[class*='focus:ring-yellow-']:focus {
+    --tw-ring-color: var(--elvirex-gold) !important;
+}
+
+[class*='focus:ring-rose-']:focus,
+[class*='focus:ring-red-']:focus {
+    --tw-ring-color: var(--elvirex-red) !important;
+}
+
+[class*='from-emerald-'],
+[class*='from-green-'],
+[class*='from-indigo-'],
+[class*='from-blue-'],
+[class*='from-amber-'],
+[class*='from-yellow-'],
+[class*='to-emerald-'],
+[class*='to-green-'],
+[class*='to-indigo-'],
+[class*='to-blue-'],
+[class*='to-amber-'],
+[class*='to-yellow-'] {
+    --tw-gradient-from: var(--elvirex-gold-light) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: var(--elvirex-gold) var(--tw-gradient-to-position) !important;
+}
+
+[class*='from-rose-'],
+[class*='from-red-'],
+[class*='to-rose-'],
+[class*='to-red-'] {
+    --tw-gradient-from: var(--elvirex-red-light) var(--tw-gradient-from-position) !important;
+    --tw-gradient-to: var(--elvirex-red) var(--tw-gradient-to-position) !important;
+}
