@@ -332,7 +332,6 @@
                                 'label' => 'Rapports d\'activité',
                             ],
                             ['route' => 'messagerie.index', 'icon' => 'fa-paper-plane', 'label' => 'Messagerie'],
-                            ['route' => 'employe.support', 'icon' => 'fa-headset', 'label' => 'Assistance'],
                         ];
                     @endphp
 
@@ -392,6 +391,7 @@
         {{-- Main Content --}}
         <main class="flex-1 overflow-y-auto overflow-x-hidden relative flex flex-col justify-between">
             <div class="max-w-7xl mx-auto px-4 sm:px-8 py-8 w-full">
+                <x-flash-message />
                 @yield('content')
             </div>
 

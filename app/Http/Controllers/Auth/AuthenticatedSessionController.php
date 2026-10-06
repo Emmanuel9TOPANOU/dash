@@ -7,6 +7,8 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Log;
+use App\Models\User;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -27,6 +29,18 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+        $user = $request->user();
+
+        if ($user instanceof User) {
+            Log::create([
+                'user_id' => $user->id,
+                'actor_id' => $user->id,
+                'actor_type' => User::class,
+                'action' => 'Connexion : système',
+                'type' => 'système',
+                'ip' => $request->ip(),
+            ]);
+        }
 
         return redirect()->intended(route('dashboard', absolute: false));
     }

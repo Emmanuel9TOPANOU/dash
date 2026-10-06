@@ -57,12 +57,12 @@ class ClientController extends Controller
     private function validated(Request $request): array
     {
         return $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['nullable', 'string', 'max:255'],
             'contact_name' => ['nullable', 'string', 'max:255'],
             'email' => ['nullable', 'email', 'max:255'],
             'phone' => ['nullable', 'string', 'max:50'],
             'address' => ['nullable', 'string'],
-            'status' => ['required', 'in:actif,inactif'],
+            'status' => ['nullable', 'in:actif,inactif'],
             'notes' => ['nullable', 'string'],
         ]);
     }

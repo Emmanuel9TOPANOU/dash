@@ -72,7 +72,6 @@
 
             {{-- Titre --}}
             <h2 class="text-center text-2xl font-extrabold text-gray-900 sm:text-3xl">Connexion Administrateur</h2>
-            <p class="mb-6 text-center text-sm text-gray-500 sm:text-base">Bienvenue dans votre espace de gestion</p>
 
             {{--  Formulaire --}}
             <form method="POST" action="{{ route('login') }}" class="space-y-5">
@@ -82,7 +81,7 @@
                 <div>
                     <label for="email" class="mb-1.5 block text-sm font-semibold text-gray-700">Email</label>
                     <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
-                        placeholder="jeandupont@gmail.com"
+                        placeholder="Entrez votre email"
                         class="form-field w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 outline-none placeholder-gray-400 focus:border-yellow-400 focus:bg-white focus:ring-2 focus:ring-yellow-200">
                     @error('email')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -119,14 +118,6 @@
                     @enderror
                 </div>
 
-                {{-- Options --}}
-                <div
-                    class="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-600 space-y-2 sm:space-y-0">
-
-                    <a href="{{ route('password.request') }}"
-                        class="font-semibold text-yellow-600 transition-colors hover:text-yellow-700 hover:underline">Mot
-                        de passe oublié ?</a>
-                </div>
 
                 {{-- Bouton --}}
                 <button type="submit"
@@ -144,10 +135,7 @@
                 </a>
             </p>
 
-            {{-- Footer --}}
-            <p class="text-center text-xs text-gray-400 mt-6">
-                © {{ date('Y') }} Système de Gestion du Personnel. Tous droits réservés.
-            </p>
+            
         </div>
     </div>
 

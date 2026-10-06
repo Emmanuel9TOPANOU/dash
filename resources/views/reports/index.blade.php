@@ -217,16 +217,6 @@
             </div>
         </div>
 
-        {{-- Pied de page avec logo --}}
-        <div class="text-center pt-4">
-            <div class="inline-flex items-center gap-3 px-6 py-3 bg-gray-50 rounded-2xl border border-gray-100">
-                <div class="flex items-center ">
-                    <span class="text-lg font-bold tracking-tight text-amber-500">ELVI</span>
-                    <span class="text-lg font-bold tracking-tight text-yellow-500">REX</span>
-                </div>
-                <span class="text-[10px] font-medium text-gray-400 uppercase tracking-widest">● NOUS VOUS FAISONS GAGNER DU
-                    TEMPS</span>
-            </div>
-        </div>
+      
     </div>
 @endsection

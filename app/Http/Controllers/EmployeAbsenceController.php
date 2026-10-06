@@ -37,8 +37,8 @@ class EmployeAbsenceController extends Controller
         $request->validate([
             'date_debut' => 'required|date',
             'date_fin' => 'required|date|after_or_equal:date_debut',
-            'motif' => 'required|string|max:255',
-            'justificatif' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'motif' => 'required|string|max:5000',
+            'justificatif' => 'nullable|file|max:2048',
         ]);
 
         $employee = Employee::find(session('employee_id'));

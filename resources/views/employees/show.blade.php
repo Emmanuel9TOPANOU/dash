@@ -133,7 +133,7 @@
                 </div>
 
                 @if(!empty($employee->contact))
-                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $employee->contact) }}?text=Bonjour%20{{ urlencode($employee->prenom) }}%20!%20👋"
+                    <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $employee->contact) }}?text=Bonjour%20{{ urlencode($employee->prenom) }}%20!%20"
                        target="_blank"
                        class="inline-flex items-center px-4 py-2 bg-black text-white text-xs font-bold  shadow-md transition-all active:scale-95 shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-4 h-4 mr-2">

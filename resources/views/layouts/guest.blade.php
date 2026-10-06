@@ -50,6 +50,7 @@
             <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full -mr-16 -mt-16 blur-2xl"></div>
 
             <div class="relative">
+                <x-flash-message />
                 {{ $slot }}
             </div>
         </div>
@@ -57,14 +58,9 @@
         {{-- Footer du Layout --}}
         <div class="relative z-10 mt-10 flex flex-col items-center space-y-2">
             <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">
-                &copy; {{ date('Y') }} ELVIREX <span class="text-amber-500">RH</span>
+                &copy; {{ date('Y') }} ELVIREX <span class="text-amber-500">communication</span>
             </p>
-            <div class="flex items-center space-x-2">
-                <div class="h-[1px] w-8 bg-slate-800"></div>
-                <span class="text-[8px] font-bold text-slate-500 uppercase tracking-widest italic">Digital
-                    Experience</span>
-                <div class="h-[1px] w-8 bg-slate-800"></div>
-            </div>
+           
         </div>
     </div>
 </body>

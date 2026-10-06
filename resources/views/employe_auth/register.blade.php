@@ -27,7 +27,6 @@
             <div class="flex flex-col items-center mb-6">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo ELVIREX" class="h-16 mb-3">
                 <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center">Créer un compte employé</h2>
-                <p class="text-gray-500 text-sm sm:text-base mt-1 text-center">Rejoignez SmartGest</p>
             </div>
 
             {{-- Formulaire --}}
@@ -125,11 +124,7 @@
                 </div>
             </form>
 
-            {{-- Footer --}}
-            <p class="text-center text-gray-400 text-xs mt-8">
-                © {{ date('Y') }} <span class="text-yellow-500 font-semibold">ELVIREX</span> — Tous droits
-                réservés.
-            </p>
+        
         </div>
     </div>
 </body>

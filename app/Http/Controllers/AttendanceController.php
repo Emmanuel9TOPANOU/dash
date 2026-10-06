@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendance;
 use App\Models\Employee;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -103,6 +104,13 @@ class AttendanceController extends Controller
             ]);
         }
 
+        Notification::notifyAdmins(
+            'attendance',
+            'Arrivée pointée',
+            $employee->prenom . ' ' . $employee->nom . ' a pointé son arrivée le ' . $heureArrivee->format('d/m/Y') . ' à ' . $heureArrivee->format('H:i:s') . '.',
+            route('attendances.index', ['date' => $today, 'employee_id' => $employee->id])
+        );
+
         return back()->with('success', '✅ Arrivée enregistrée à ' . $heureArrivee->format('H:i:s'));
     }
 
@@ -135,11 +143,19 @@ class AttendanceController extends Controller
             return back()->with('error', 'Votre départ est déjà enregistré.');
         }
 
-        $heureDepart = now()->format('H:i:s');
+        $dateTimeDepart = now();
+        $heureDepart = $dateTimeDepart->format('H:i:s');
         $attendance->update(['heure_depart' => $heureDepart]);
 
         // Le modèle calcule automatiquement la durée travaillée et le départ anticipé.
         $attendance->refresh();
+
+        Notification::notifyAdmins(
+            'attendance',
+            'Départ pointé',
+            $employee->prenom . ' ' . $employee->nom . ' a pointé son départ le ' . $dateTimeDepart->format('d/m/Y') . ' à ' . $heureDepart . '.',
+            route('attendances.index', ['date' => $today, 'employee_id' => $employee->id])
+        );
 
         return back()->with('success', '👋 Départ enregistré à ' . $heureDepart);
     }

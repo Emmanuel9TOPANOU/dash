@@ -34,7 +34,7 @@ class RhController extends Controller
             $search = $request->search;
             $query->whereHas('employee', function ($q) use ($search) {
                 $q->where('nom', 'like', "%$search%")
-                ->orWhere('prenom', 'like', "%$search%");
+                    ->orWhere('prenom', 'like', "%$search%");
             });
         }
 
@@ -69,10 +69,10 @@ class RhController extends Controller
         $search = $request->search;
 
         $employees = Employee::when($search, function ($q) use ($search) {
-                $q->where('nom', 'like', "%$search%")
-                  ->orWhere('prenom', 'like', "%$search%")
-                  ->orWhere('matricule', 'like', "%$search%");
-            })
+            $q->where('nom', 'like', "%$search%")
+                ->orWhere('prenom', 'like', "%$search%")
+                ->orWhere('matricule', 'like', "%$search%");
+        })
             ->orderBy('prenom')
             ->paginate(10);
 
@@ -91,7 +91,7 @@ class RhController extends Controller
         return view('administration.rh.employees.show', compact('employee', 'attendances'));
     }
 
-        // Formulaire création employé
+    // Formulaire création employé
     public function createEmployee()
     {
         return view('administration.rh.employees.create');
@@ -109,7 +109,7 @@ class RhController extends Controller
             'service' => 'nullable|string|max:255',
             'contact' => 'nullable|string|max:50',
             'role' => 'nullable|string', // si tu veux RH, comptable, etc.
-            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:10000',
+            'photo' => 'nullable|image|max:10000',
         ]);
 
         // Upload photo
@@ -122,7 +122,4 @@ class RhController extends Controller
         return redirect()->route('administration.rh.employees')
             ->with('success', 'Employé ajouté avec succès 🎉');
     }
-
 }
-
-

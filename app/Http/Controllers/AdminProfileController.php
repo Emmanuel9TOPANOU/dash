@@ -16,12 +16,18 @@ class AdminProfileController extends Controller
     {
         $admin = Auth::user();
 
-        // 🔢 Statistiques dynamiques
-        $actionsMois = \App\Models\Log::whereMonth('created_at', now()->month)->count() ?? 0; // Si tu as une table logs
+        $actionsMois = \App\Models\Log::where('user_id', $admin->id)
+            ->whereYear('created_at', now()->year)
+            ->whereMonth('created_at', now()->month)
+            ->count();
         $employesCount = \App\Models\Employee::count();
         $dateInscription = $admin->created_at ? $admin->created_at->translatedFormat('F Y') : '—';
+        $activityLogs = \App\Models\Log::where('user_id', $admin->id)
+            ->latest()
+            ->paginate(10, ['*'], 'activities')
+            ->withQueryString();
 
-        return view('admin.profile', compact('admin', 'actionsMois', 'employesCount', 'dateInscription'));
+        return view('admin.profile', compact('admin', 'actionsMois', 'employesCount', 'dateInscription', 'activityLogs'));
     }
 
 
@@ -36,7 +42,7 @@ class AdminProfileController extends Controller
             'name'  => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $admin->id,
             'phone' => 'nullable|string|max:20',
-            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'photo' => 'nullable|image|max:2048',
         ]);
 
         if ($request->hasFile('photo')) {

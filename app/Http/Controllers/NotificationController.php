@@ -21,11 +21,22 @@ class NotificationController extends Controller
                 'id' => $notification->id,
                 'title' => $notification->title,
                 'message' => $notification->message,
-                'link' => $notification->link,
+                'link' => $notification->link ?? $this->fallbackLinkFor($notification),
                 'is_read' => (bool) $notification->is_read,
                 'created_at' => $notification->created_at?->diffForHumans(),
             ])->values(),
         ]);
+    }
+
+    private function fallbackLinkFor(Notification $notification): string
+    {
+        return match ($notification->type) {
+            'absence' => route('absences.index'),
+            'message' => route('messagerie.index'),
+            'attendance' => route('attendances.index'),
+            'task' => route('tasks.index'),
+            default => route('administration.dashboard'),
+        };
     }
 
     public function markAllAsRead(Request $request)

@@ -105,13 +105,6 @@ class EmployeDashboardController extends Controller
         return view('employe.rapports.index', compact('employee'));
     }
 
-    // Support
-    public function support()
-    {
-        $employee = Employee::find(session('employee_id'));
-        return view('employe.support', compact('employee'));
-    }
-
     // Profil personnel
     public function profile()
     {

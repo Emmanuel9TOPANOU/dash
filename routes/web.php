@@ -41,7 +41,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 // =======================
 // Espace administrateur
 // =======================
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin.activity'])->group(function () {
 
     // Profil administrateur
     Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
@@ -110,7 +110,6 @@ Route::get('employe/logout', [EmployeAuthController::class, 'logout'])->name('em
 
 // Tableau de bord employé
 Route::get('employe/dashboard', [EmployeDashboardController::class, 'index'])->name('employe.dashboard');
-Route::get('employe/support', [EmployeDashboardController::class, 'support'])->name('employe.support');
 Route::get('employe/profile', [EmployeDashboardController::class, 'profile'])->name('employe.profile');
 Route::get('employe/presences', [EmployeDashboardController::class, 'presences'])->name('employe.presences');
 
@@ -135,9 +134,6 @@ Route::get('employe/rapports', [EmployeReportController::class, 'index'])->name(
 Route::get('employe/rapports/pdf', [EmployeReportController::class, 'exportPdf'])->name('employe.rapports.pdf');
 
 Route::put('employe/profile/update', [EmployeDashboardController::class, 'updateProfile'])->name('employe.profile.update');
-
-// Envoi du message de support
-Route::post('/employe/support/send', [App\Http\Controllers\EmployeSupportController::class, 'send'])->name('employe.support.send');
 
 // =======================
 // Espace Administration

@@ -3,13 +3,6 @@
 @section('content')
     <h2 class="text-2xl font-semibold mb-4">📄 Fiches de paie générées</h2>
 
-    @if (session('success'))
-        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 2000)"
-            class="mb-4 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm font-medium text-emerald-700 shadow-sm transition-all">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="flex justify-end mb-4">
         <a href="{{ route('administration.rh.paie.create') }}"
             class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md font-medium">

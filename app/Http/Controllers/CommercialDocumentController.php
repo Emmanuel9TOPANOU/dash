@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CommercialDocument;
 use App\Models\Client;
+use App\Models\Employee;
 use App\Models\Service;
 use App\Models\Project;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class CommercialDocumentController extends Controller
     public function index(Request $request)
     {
         $type = $request->query('type', 'devis'); // Par défaut : devis
-        
+
         $documents = CommercialDocument::with(['client', 'project'])
             ->where('type', $type)
             ->latest()
@@ -79,7 +80,7 @@ class CommercialDocumentController extends Controller
                 'numero' => $numero,
                 'client_id' => $request->client_id,
                 'project_id' => $request->project_id,
-                'created_by' => auth()->id(),
+                'created_by' => Employee::where('email', auth()->user()->email)->value('id'),
                 'date_emission' => $request->date_emission,
                 'date_echeance' => $request->date_echeance,
                 'taux_tva' => $tauxTva,
@@ -95,7 +96,7 @@ class CommercialDocumentController extends Controller
             // Enregistrement des lignes d'articles
             foreach ($request->items as $item) {
                 $totalItem = $item['quantite'] * $item['prix_unitaire'];
-                
+
                 $document->items()->create([
                     'service_id' => $item['service_id'] ?? null,
                     'designation' => $item['designation'],

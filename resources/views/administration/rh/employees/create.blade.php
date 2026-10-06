@@ -3,12 +3,6 @@
 @section('content')
 <h2 class="text-2xl font-semibold mb-6">➕ Ajouter un employé</h2>
 
-@if($errors->any())
-    <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
-        <strong>Erreur :</strong> vérifiez les champs ci-dessous.
-    </div>
-@endif
-
 <div class="bg-white p-6 rounded shadow max-w-xl">
     <form method="POST" action="{{ route('administration.rh.employees.store') }}" enctype="multipart/form-data" class="space-y-4">
         @csrf

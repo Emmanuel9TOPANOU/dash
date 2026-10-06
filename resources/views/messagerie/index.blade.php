@@ -24,22 +24,6 @@
             </div>
         </div>
 
-        {{-- Alertes / Notifications --}}
-        @if (session('success'))
-            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
-                class="flex items-center justify-between p-4 bg-emerald-50 border border-emerald-200/80 text-emerald-800 rounded-2xl shadow-sm transition-all">
-                <div class="flex items-center space-x-3">
-                    <div class="p-2 bg-emerald-100/80 rounded-xl text-emerald-600">
-                        <i class="fas fa-check-circle text-lg"></i>
-                    </div>
-                    <span class="text-sm font-semibold">{{ session('success') }}</span>
-                </div>
-                <button @click="show = false" class="text-emerald-500 hover:text-emerald-700 transition-colors">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        @endif
-
         {{-- Fil de Discussion --}}
         <div
             class="bg-white border border-slate-100 rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-200/50 space-y-6 max-h-[600px] overflow-y-auto">

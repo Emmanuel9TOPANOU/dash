@@ -5,7 +5,6 @@
     {{-- En-tête Institutionnel avec Bouton Raccourci --}}
     <div class="flex flex-col md:flex-row justify-between items-start mb-10">
         <div class="border-l-4 border-amber-500 pl-6">
-            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Administration RH</span>
             <h2 class="text-3xl font-black text-slate-900 tracking-tight mt-1">Nouvelle Demande</h2>
             <p class="text-slate-500 font-medium mt-1 text-sm">Formulaire de soumission d'absence officielle.</p>
         </div>
@@ -27,9 +26,12 @@
             <div class="space-y-2">
                 <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest">Date de début</label>
                 <div class="relative">
-                    <input type="date" name="date_debut" 
+                    <input type="date" name="date_debut" value="{{ old('date_debut') }}"
                            class="w-full bg-slate-50 border-none rounded-xl px-4 py-3.5 text-slate-900 font-bold focus:ring-2 focus:ring-amber-500/20 transition-all" 
                            required>
+                    @error('date_debut')
+                        <p class="text-sm text-rose-600">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
 
@@ -37,19 +39,27 @@
             <div class="space-y-2">
                 <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest">Date de fin</label>
                 <div class="relative">
-                    <input type="date" name="date_fin" 
+                    <input type="date" name="date_fin" value="{{ old('date_fin') }}"
                            class="w-full bg-slate-50 border-none rounded-xl px-4 py-3.5 text-slate-900 font-bold focus:ring-2 focus:ring-amber-500/20 transition-all" 
                            required>
+                    @error('date_fin')
+                        <p class="text-sm text-rose-600">{{ $message }}</p>
+                    @enderror
                 </div>
             </div>
         </div>
 
         {{-- Motif --}}
         <div class="space-y-2">
-            <label class="block text-[11px] font-black text-slate-400 uppercase tracking-widest">Motif de l'absence</label>
-            <input type="text" name="motif" placeholder="Ex: Raison médicale, Congé annuel..."
-                   class="w-full bg-slate-50 border-none rounded-xl px-4 py-3.5 text-slate-900 font-semibold focus:ring-2 focus:ring-amber-500/20 transition-all" 
-                   required>
+            <label for="motif" class="block text-[11px] font-black text-slate-400 uppercase tracking-widest">Motif et justification de l'absence</label>
+            <textarea id="motif" name="motif" rows="5" maxlength="5000"
+                   placeholder="Expliquez le motif de votre absence et donnez les informations nécessaires à son examen..."
+                   class="w-full bg-slate-50 border-none rounded-xl px-4 py-3.5 text-slate-900 font-semibold focus:ring-2 focus:ring-amber-500/20 transition-all resize-y"
+                   required>{{ old('motif') }}</textarea>
+            <p class="text-xs text-slate-400">Décrivez la raison de votre absence (5000 caractères maximum).</p>
+            @error('motif')
+                <p class="text-sm text-rose-600">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- Justificatif --}}
@@ -63,6 +73,9 @@
                        class="w-full bg-slate-50 border-none rounded-xl pl-10 pr-4 py-3.5 text-sm text-slate-500 font-medium file:mr-4 file:py-1 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-black file:uppercase file:tracking-widest file:bg-slate-200 file:text-slate-600 hover:file:bg-slate-300 cursor-pointer">
             </div>
             <p class="text-[10px] text-slate-400 font-medium italic mt-2">Format supporté : PDF, JPG, PNG (Max 2Mo)</p>
+            @error('justificatif')
+                <p class="text-sm text-rose-600">{{ $message }}</p>
+            @enderror
         </div>
 
         {{-- Actions --}}
@@ -74,7 +87,7 @@
             </a>
             
             <button type="submit" 
-                    class="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold text-sm transition-all duration-300 shadow-lg shadow-slate-200 active:scale-95 flex items-center space-x-3">
+                    class="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-2xl font-bold text-sm transition-all duration-300  active:scale-95 flex items-center space-x-3">
                 <i class="fas fa-paper-plane text-amber-400 text-xs"></i>
                 <span>Soumettre le dossier</span>
             </button>

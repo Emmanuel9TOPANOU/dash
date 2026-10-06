@@ -73,8 +73,6 @@ class ProjectController extends Controller
             'budget' => ['nullable', 'numeric', 'min:0'],
             'starts_at' => ['nullable', 'date'],
             'ends_at' => ['nullable', 'date', 'after_or_equal:starts_at'],
-            'progress' => ['required', 'integer', 'min:0', 'max:100'],
-            'status' => ['required', 'in:planifie,en_cours,suspendu,termine'],
         ]);
     }
 }

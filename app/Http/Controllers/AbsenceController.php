@@ -35,7 +35,7 @@ class AbsenceController extends Controller
             'date_debut' => 'required|date',
             'date_fin' => 'required|date|after_or_equal:date_debut',
             'motif' => 'required|string|max:255',
-            'justificatif' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
+            'justificatif' => 'nullable|file|max:2048',
         ]);
 
         $validated['employee_id'] = Auth::user()->employee->id ?? null;

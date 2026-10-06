@@ -1,15 +1,3 @@
-@if (session('success'))
-    <div class="mb-6 p-4 bg-emerald-50 text-emerald-900 rounded-xl shadow-sm border border-emerald-100 font-medium">
-        {{ session('success') }}
-    </div>
-@endif
-
-@if (session('error'))
-    <div class="mb-6 p-4 bg-rose-50 text-rose-900 rounded-xl shadow-sm border border-rose-100 font-medium">
-        {{ session('error') }}
-    </div>
-@endif
-
 @extends('layouts.appdash')
 
 
@@ -18,37 +6,6 @@
         class="min-h-screen bg-slate-50/80 text-slate-800 font-sans p-4 sm:p-6 lg:p-10 relative overflow-hidden selection:bg-amber-500 selection:text-white">
 
         <div class="max-w-7xl mx-auto space-y-8 relative z-10">
-
-            {{-- Notifications Flash Premium --}}
-            @if (session('success'))
-                <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
-                    class="flex items-center justify-between p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-emerald-800 shadow-sm transition-all">
-                    <div class="flex items-center space-x-3">
-                        <div class="p-2 bg-emerald-100 rounded-xl text-emerald-600">
-                            <i class="fas fa-check-circle text-lg"></i>
-                        </div>
-                        <span class="font-semibold text-sm sm:text-base">{{ session('success') }}</span>
-                    </div>
-                    <button @click="show = false" class="text-emerald-500 hover:text-emerald-700 transition-colors">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            @endif
-
-            @if (session('error'))
-                <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
-                    class="flex items-center justify-between p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-800 shadow-sm transition-all">
-                    <div class="flex items-center space-x-3">
-                        <div class="p-2 bg-rose-100 rounded-xl text-rose-600">
-                            <i class="fas fa-exclamation-triangle text-lg"></i>
-                        </div>
-                        <span class="font-semibold text-sm sm:text-base">{{ session('error') }}</span>
-                    </div>
-                    <button @click="show = false" class="text-rose-500 hover:text-rose-700 transition-colors">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            @endif
 
             {{-- En-tête de bienvenue --}}
             <div

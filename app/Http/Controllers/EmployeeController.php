@@ -49,7 +49,7 @@ class EmployeeController extends Controller
             'date_embauche' => 'nullable|date',
             'salaire' => 'nullable|numeric|min:0',
             'prime' => 'nullable|numeric|min:0',
-            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'photo' => 'nullable|image|max:2048',
         ]);
 
         // Upload photo si présente
@@ -88,7 +88,7 @@ class EmployeeController extends Controller
             'date_embauche' => 'nullable|date',
             'salaire' => 'nullable|numeric|min:0',
             'prime' => 'nullable|numeric|min:0',
-            'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'photo' => 'nullable|image|max:2048',
         ]);
 
         // Gérer l'upload de la photo

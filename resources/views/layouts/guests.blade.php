@@ -51,6 +51,7 @@
         {{-- Conteneur Blanc Premium --}}
         <div class="bg-white premium-shadow rounded-[2.5rem] border border-slate-100 overflow-hidden">
             <div class="p-8 sm:p-10">
+                <x-flash-message />
                 @yield('content')
             </div>
 
@@ -71,11 +72,9 @@
         {{-- Footer externe --}}
         <div class="mt-12 text-center">
             <p class="text-[9px] font-black text-slate-300 uppercase tracking-[0.5em]">
-                &copy; {{ date('Y') }} Elvirex Group
+                &copy; {{ date('Y') }} Elvirex communication
             </p>
-            <p class="text-[8px] font-bold text-slate-400/60 uppercase tracking-widest mt-2">
-                Plateforme de Gestion RH Intégrée
-            </p>
+           
         </div>
     </div>
 

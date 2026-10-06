@@ -65,14 +65,8 @@
             </a>
 
             <h2 class="text-center text-2xl font-extrabold text-gray-900 sm:text-3xl">Connexion Employé</h2>
-            <p class="mb-6 text-center text-sm text-gray-500 sm:text-base">Bienvenue dans votre espace collaborateur</p>
 
-            @if (session('error'))
-                <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 2000)"
-                    class="mb-5 rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600 shadow-sm transition-all">
-                    {{ session('error') }}
-                </div>
-            @endif
+            <x-flash-message />
 
             <form method="POST" action="{{ route('employe.login.submit') }}" class="space-y-5">
                 @csrf
@@ -80,7 +74,7 @@
                 <div>
                     <label for="email" class="mb-1.5 block text-sm font-semibold text-gray-700">Email</label>
                     <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
-                        placeholder="jeandupont@gmail.com"
+                        placeholder="Entrez votre email"
                         class="form-field w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-900 outline-none placeholder-gray-400 focus:border-yellow-400 focus:bg-white focus:ring-2 focus:ring-yellow-200">
                     @error('email')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -115,12 +109,7 @@
                     @enderror
                 </div>
 
-                <div class="flex items-center text-sm text-gray-600">
-                    <label class="flex items-center">
-                        <input type="checkbox" name="remember" class="rounded border-gray-300">
-                        <span class="ml-2">Se souvenir de moi</span>
-                    </label>
-                </div>
+            
 
                 <button type="submit"
                     class="w-full rounded-xl border border-yellow-300 bg-yellow-400 py-3 font-bold text-gray-950 shadow-lg shadow-yellow-900/20 transition duration-300 hover:-translate-y-0.5 hover:bg-yellow-300 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 active:translate-y-0">
@@ -136,9 +125,7 @@
                 </a>
             </p>
 
-            <p class="text-center text-xs text-gray-400 mt-6">
-                © {{ date('Y') }} Système de Gestion du Personnel. Tous droits réservés.
-            </p>
+          
         </div>
     </div>
 

@@ -58,7 +58,11 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         $employees = Employee::where('actif', true)->get();
-        $projects = Project::whereIn('status', ['planifie', 'en_cours'])->orWhereKey($task->project_id)->orderBy('name')->get();
+        $projects = Project::whereIn('status', ['planifie', 'en_cours'])
+            ->orWhere('id', $task->project_id)
+            ->orderBy('name')
+            ->get();
+
         return view('tasks.edit', compact('task', 'employees', 'projects'));
     }
 

@@ -116,13 +116,13 @@
     </div>
 
     {{-- Historique d’activité --}}
-    <div class="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
+    <div id="activity-history" class="bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/30">
             <div>
                 <h3 class="text-gray-900 font-bold text-lg">Historique d’activité</h3>
                 <p class="text-xs text-gray-500 mt-0.5">Dernières opérations exécutées dans la plateforme</p>
             </div>
-            <a href="#" class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition">
+            <a href="#activity-history" class="inline-flex items-center gap-1 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition">
                 Voir tout
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </a>
@@ -137,20 +137,31 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    @foreach([['Connexion au système', '01-11-2025 à 08:00'],
-                            ['Validation absence - WANKOU Warépi', '27-10-2025 à 08:00'],
-                            ['Tâche attribuée à TCHIAKPE Marc', '26-10-2025 à 10:00']] as $log)
+                    @forelse ($activityLogs as $log)
                         <tr class="hover:bg-amber-50/30 transition-colors duration-150">
                             <td class="px-6 py-4 flex items-center space-x-3 text-gray-800 font-medium">
                                 <span class="w-8 h-8 rounded-lg bg-amber-100/70 text-amber-600 flex items-center justify-center text-sm shadow-sm">⚡</span>
-                                <span>{{ $log[0] }}</span>
+                                <span>{{ $log->action }}</span>
                             </td>
-                            <td class="px-6 py-4 text-gray-500 font-mono text-xs">{{ $log[1] }}</td>
+                            <td class="px-6 py-4 text-gray-500 font-mono text-xs">
+                                {{ $log->created_at?->translatedFormat('d/m/Y à H:i') ?? '—' }}
+                            </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="2" class="px-6 py-8 text-center text-sm text-gray-500">
+                                Aucune activité enregistrée pour le moment.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
+        @if ($activityLogs->hasPages())
+            <div class="border-t border-gray-100 px-6 py-4">
+                {{ $activityLogs->links() }}
+            </div>
+        @endif
     </div>
 </div>
 

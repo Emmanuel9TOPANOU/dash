@@ -15,17 +15,6 @@
             </a>
         </div>
 
-        @if ($errors->any())
-            <div class="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-                <div class="font-bold mb-2">Veuillez corriger les erreurs suivantes :</div>
-                <ul class="list-disc pl-5 space-y-1">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm">
             <form action="{{ route('employees.update', $employee->id) }}" method="POST" enctype="multipart/form-data"
                 class="space-y-5">

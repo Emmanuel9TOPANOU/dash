@@ -8,19 +8,6 @@
             <p class="mt-1 text-sm text-gray-500">Gérez les détails officiels et l'identité visuelle de votre structure.</p>
         </div>
 
-        <!-- Notification de succès -->
-        @if (session('success'))
-            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 2000)"
-                class="mb-6 flex items-center p-4 rounded-r-lg border-l-4 border-emerald-500 bg-emerald-50 shadow-sm transition-all">
-                <svg class="mr-3 h-5 w-5 flex-shrink-0 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd" />
-                </svg>
-                <span class="text-sm font-medium text-emerald-800">{{ session('success') }}</span>
-            </div>
-        @endif
-
         <!-- Formulaire principal -->
         <form action="{{ route('administration.settings.update') }}" method="POST" enctype="multipart/form-data"
             class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-200">

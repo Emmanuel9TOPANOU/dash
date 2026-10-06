@@ -406,20 +406,26 @@
                     this.unread = 0;
                 },
                 async openNotification(notification) {
-                    await fetch(`/notifications/${notification.id}/read`, {
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({})
-                    });
-                    this.notifications = this.notifications.filter(item => item.id !== notification.id);
-                    this.unread = Math.max(0, this.unread - 1);
-                    if (notification.link) window.location.href = notification.link;
+                    try {
+                        const response = await fetch(`/notifications/${notification.id}/read`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({})
+                        });
+                        if (!response.ok) throw new Error('Impossible de marquer la notification comme lue.');
+                    } catch (error) {
+                        console.error(error);
+                    } finally {
+                        this.notifications = this.notifications.filter(item => item.id !== notification.id);
+                        this.unread = Math.max(0, this.unread - 1);
+                        window.location.assign(notification.link || '{{ route('administration.dashboard') }}');
+                    }
                 }
-            }" x-init="loadNotifications()"
+            }" x-init="loadNotifications(); setInterval(() => loadNotifications(), 10000)"
                 @click.outside="openNotifications = false" @keydown.escape.window="openNotifications = false">
                 <button type="button" @click="openNotifications = !openNotifications"
                     aria-label="Ouvrir les notifications"
@@ -451,7 +457,8 @@
 
                     <div x-show="notifications.length > 0" class="max-h-80 overflow-y-auto">
                         <template x-for="notification in notifications" :key="notification.id">
-                            <a href="#" @click.prevent="openNotification(notification)"
+                            <a :href="notification.link || '{{ route('administration.dashboard') }}'"
+                                @click.prevent="openNotification(notification)"
                                 class="block border-b border-slate-100 px-4 py-3 transition hover:bg-slate-50">
                                 <div class="flex items-start justify-between gap-3">
                                     <div>
@@ -473,7 +480,7 @@
 
             <div class="flex items-center space-x-3">
                 <a href="{{ route('admin.profile') }}" class="relative group">
-                    <img src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : asset('images/default-avatar.png') }}"
+                    <img src="{{ Auth::user()?->photo ? asset('storage/' . Auth::user()->photo) : asset('images/default-avatar.png') }}"
                         alt="Photo administrateur"
                         class="w-10 h-10 rounded-2xl object-cover border-2 border-amber-400 group-hover:scale-105 shadow-sm transition-all duration-300">
                 </a>
@@ -612,6 +619,7 @@
 
         {{-- Contenu principal --}}
         <main class="flex-1 p-6 sm:p-8 bg-slate-50 overflow-y-auto">
+            <x-flash-message />
             @yield('content')
         </main>
     </div>

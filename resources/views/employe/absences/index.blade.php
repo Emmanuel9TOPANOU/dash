@@ -8,17 +8,14 @@
             <div class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-amber-400 to-amber-600"></div>
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div class="space-y-1">
-                    <span
-                        class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-amber-50 text-amber-700 border border-amber-200/60">
-                        Gestion du temps
-                    </span>
+                  
                     <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Registre des Absences</h2>
                     <p class="text-slate-500 font-medium text-sm">Suivi et historique de vos demandes de congés et absences
                         exceptionnelles.</p>
                 </div>
 
                 <a href="{{ route('employe.absences.create') }}"
-                    class="group inline-flex items-center space-x-2.5 bg-slate-950 hover:bg-slate-800 text-white px-6 py-3.5 rounded-2xl font-bold transition-all duration-300 shadow-xl shadow-slate-950/10 hover:shadow-slate-950/20 active:scale-95 shrink-0">
+                    class="group inline-flex items-center space-x-2.5 bg-slate-950  text-white px-6 py-3.5 rounded-2xl font-bold transition-all duration-300 active:scale-95 shrink-0">
                     <div
                         class="w-6 h-6 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400 group-hover:scale-110 transition-transform">
                         <i class="fas fa-plus text-xs"></i>
@@ -27,22 +24,6 @@
                 </a>
             </div>
         </div>
-
-        {{-- Notification de succès --}}
-        @if (session('success'))
-            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 2000)" x-show="show"
-                class="flex items-center justify-between p-4 bg-emerald-50 border border-emerald-200/80 text-emerald-800 rounded-2xl shadow-sm transition-all">
-                <div class="flex items-center space-x-3">
-                    <div class="p-2 bg-emerald-100/80 rounded-xl text-emerald-600">
-                        <i class="fas fa-check-circle text-lg"></i>
-                    </div>
-                    <span class="text-sm font-semibold">{{ session('success') }}</span>
-                </div>
-                <button @click="show = false" class="text-emerald-500 hover:text-emerald-700 transition-colors">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-        @endif
 
         {{-- Tableau des Absences --}}
         <div class="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">

@@ -90,14 +90,9 @@
                 {{-- Motif --}}
                 <div class="space-y-1">
                     <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Motif</p>
-                    <p class="text-base font-medium text-gray-900">{{ $absence->motif }}</p>
+                    <p class="text-base font-medium text-gray-900 whitespace-pre-line">{{ $absence->motif }}</p>
                 </div>
 
-                {{-- Commentaire --}}
-                <div class="sm:col-span-2 space-y-1 bg-gray-50/50 p-4 rounded-lg border border-gray-100">
-                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Commentaire</p>
-                    <p class="text-sm text-gray-700 leading-relaxed">{{ $absence->commentaire ?? '—' }}</p>
-                </div>
 
                 {{-- Justificatif --}}
                 <div class="sm:col-span-2 space-y-1 pt-2">
@@ -161,14 +156,6 @@
                         </form>
                     @endif
                 @endcan
-
-                {{-- Bouton modifier --}}
-                <a href="{{ route('absences.edit', $absence) }}" 
-                   class="inline-flex items-center gap-1.5 px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 font-medium text-sm rounded-lg border border-gray-300 shadow-sm transition duration-150">
-                    <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
-                    Modifier
-                </a>
-            </div>
 
             {{-- Bouton Supprimer à droite --}}
             <form action="{{ route('absences.destroy', $absence) }}" method="POST" onsubmit="return confirm('Supprimer cette absence ?')" class="inline">

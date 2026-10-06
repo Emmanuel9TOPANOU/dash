@@ -4,18 +4,9 @@
     <div class="space-y-8">
         {{-- En-tête Institutionnel --}}
         <div class="border-l-4 border-amber-500 pl-6 mb-10">
-            <span class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Gestion de projet</span>
             <h2 class="text-3xl font-black text-slate-900 tracking-tight mt-1">Mes Missions & Tâches</h2>
             <p class="text-slate-500 font-medium mt-1 text-sm">Suivi opérationnel de vos objectifs et livrables.</p>
         </div>
-
-        @if (session('success'))
-            <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 2000)"
-                class="flex items-center p-4 bg-emerald-50 border border-emerald-100 text-emerald-800 rounded-2xl animate-fade-in transition-all">
-                <i class="fas fa-check-circle mr-3 text-emerald-500"></i>
-                <span class="text-sm font-bold">{{ session('success') }}</span>
-            </div>
-        @endif
 
         @if ($tasks->isEmpty())
             <div class="text-center py-20 bg-white rounded-3xl border border-dashed border-slate-200">
@@ -29,13 +20,13 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 @foreach ($tasks as $task)
                     <div
-                        class="group bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 relative overflow-hidden">
+                        class="group bg-white border border-slate-100 rounded-3xl p-6  transition-all duration-300 relative overflow-hidden">
                         {{-- Badge de Priorité --}}
                         <div
                             class="absolute top-0 right-0 px-4 py-1 rounded-bl-2xl text-[9px] font-black uppercase tracking-widest
-                        @if ($task->priorite == 'haute') bg-rose-500 text-white
-                        @elseif($task->priorite == 'moyenne') bg-amber-500 text-white
-                        @else bg-slate-400 text-white @endif">
+                        @if ($task->priorite == 'haute') bg-black text-white
+                        @elseif($task->priorite == 'moyenne') bg-black text-white
+                        @else bg-black text-white @endif">
                             Priorité {{ $task->priorite }}
                         </div>
 
@@ -73,7 +64,7 @@
 
                                 <button type="button"
                                     onclick="openTaskModal('{{ addslashes($task->description) }}', '{{ $task->priorite }}', '{{ $task->statut }}')"
-                                    class="text-slate-400 hover:text-slate-900 text-[11px] font-bold uppercase tracking-tighter flex items-center transition-colors">
+                                    class="text-black text-[11px] font-bold uppercase tracking-tighter flex items-center transition-colors">
                                     <i class="fas fa-plus-circle mr-1 text-[9px]"></i> Détails
                                 </button>
                             </div>
@@ -91,15 +82,15 @@
                                     <form method="POST" action="{{ route('employe.taches.done', $task) }}">
                                         @csrf
                                         <button type="submit"
-                                            class="flex items-center space-x-2 bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all shadow-md shadow-emerald-100 active:scale-95">
+                                            class="flex items-center space-x-2 bg-yellow-600  text-white px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all  active:scale-95">
                                             <i class="fas fa-check"></i>
                                             <span>Clôturer</span>
                                         </button>
                                     </form>
                                 @else
-                                    <div class="flex items-center text-emerald-500 space-x-1">
+                                    <div class="flex items-center text-yellow-600 space-x-1">
                                         <i class="fas fa-check-double text-xs"></i>
-                                        <span class="text-[10px] font-black uppercase tracking-widest">Complété</span>
+                                        <span class="text-[10px] font-black uppercase tracking-widest">Terminée</span>
                                     </div>
                                 @endif
                             </div>

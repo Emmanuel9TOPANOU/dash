@@ -5,11 +5,11 @@
         <h2 class="text-2xl font-semibold text-gray-800">📝 Liste des tâches</h2>
         <a href="{{ route('tasks.create') }}"
             class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-md font-medium">
-            ➕ Nouvelle tâche
+             Nouvelle tâche
         </a>
     </div>
 
-    {{-- ✅ Barre de recherche par date --}}
+    {{--  Barre de recherche par date --}}
     <form method="GET" action="{{ route('tasks.index') }}" class="flex items-center space-x-3 mb-6">
         <input type="date" name="date" value="{{ $selectedDate ?? '' }}"
             class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-yellow-500 focus:border-yellow-500">
@@ -21,17 +21,10 @@
 
         @if ($selectedDate)
             <a href="{{ route('tasks.index') }}" class="text-sm text-gray-600 hover:underline">
-                ❌ Réinitialiser
+                 Réinitialiser
             </a>
         @endif
     </form>
-
-    @if (session('success'))
-        <div x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 2000)"
-            class="mb-4 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm font-medium text-emerald-700 shadow-sm transition-all">
-            {{ session('success') }}
-        </div>
-    @endif
 
     <div class="bg-white rounded-lg shadow border border-gray-200 overflow-hidden">
         <table class="w-full border-collapse">

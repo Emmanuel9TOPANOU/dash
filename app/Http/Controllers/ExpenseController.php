@@ -30,11 +30,10 @@ class ExpenseController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'amount' => 'required|numeric',
-            'expense_date' => 'required|date',
-            'category' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
+            'motif' => 'required|string|max:255',
+            'montant' => 'required|numeric|min:0',
+            'date' => 'required|date',
+            'categorie' => 'nullable|string|max:255',
         ]);
 
         Expense::create($validated);
@@ -64,11 +63,10 @@ class ExpenseController extends Controller
     public function update(Request $request, Expense $expense)
     {
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'amount' => 'required|numeric',
-            'expense_date' => 'required|date',
-            'category' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
+            'motif' => 'required|string|max:255',
+            'montant' => 'required|numeric|min:0',
+            'date' => 'required|date',
+            'categorie' => 'nullable|string|max:255',
         ]);
 
         $expense->update($validated);

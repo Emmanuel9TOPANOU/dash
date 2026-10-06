@@ -349,6 +349,7 @@
 
         {{-- Contenu principal --}}
         <main class="flex-1 overflow-y-auto p-6">
+            <x-flash-message />
             @yield('content')
         </main>
     </div>
